@@ -1,7 +1,7 @@
 import * as _ from 'underscore'
 
 interface Term {
-    eval(): number
+    roll(): number
 }
 
 interface TermElement extends Term { }
@@ -13,7 +13,7 @@ class IntegerTerm implements TermElement {
         this._value = value
     }
 
-    eval(): number {
+    roll(): number {
         return this._value
     }
 }
@@ -60,7 +60,7 @@ class DiceTerm implements TermElement {
 
     get filteredDice(): Array<number> { return this._filteredDice }
 
-    eval(): number {
+    roll(): number {
         //If already rolled, prevent re-rolling and directly return result
         if (this._rolledDice.length > 0) {
             return this._result
@@ -128,16 +128,16 @@ class OperatorTerm implements Term {
         this.termElm2 = termElm2
     }
 
-    eval(): number {
+    roll(): number {
         switch (this.operator) {
             case OperatorType.ADD:
-                return this.termElm1.eval() + this.termElm2.eval()
+                return this.termElm1.roll() + this.termElm2.roll()
             case OperatorType.SUB:
-                return this.termElm1.eval() - this.termElm2.eval()
+                return this.termElm1.roll() - this.termElm2.roll()
             case OperatorType.MUL:
-                return this.termElm1.eval() * this.termElm2.eval()
+                return this.termElm1.roll() * this.termElm2.roll()
             case OperatorType.DIV:
-                return this.termElm1.eval() / this.termElm2.eval()
+                return this.termElm1.roll() / this.termElm2.roll()
             default:
                 throw 'OperatorTerm::eval : Invalid OperatorType'
         }

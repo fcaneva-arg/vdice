@@ -7,7 +7,7 @@
         "lib": "lib"
     },
     "scripts": {
-        "lib": "npm run grammar && tsc",
+        "lib": "npm run lib:grammar && tsc",
         "lib:grammar": "cd src && nearleyc ./grammar.ne --out ./grammar.ts",
         "test": "node test/app.js"
     },
