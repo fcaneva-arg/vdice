@@ -2,6 +2,7 @@ import * as _ from 'underscore'
 
 interface Term {
     roll(): number
+    fullResult(): object
 }
 
 interface TermElement extends Term { }
@@ -15,6 +16,10 @@ class IntegerTerm implements TermElement {
 
     roll(): number {
         return this._value
+    }
+
+    fullResult(): object {
+        return {value: this._value}
     }
 }
 
@@ -108,6 +113,18 @@ class DiceTerm implements TermElement {
         //Return result
         return this._result
     }
+
+    fullResult(): object {
+        //If not rolled previously, roll it first
+        if (this._rolledDice.length == 0) {
+            this.roll()
+        }
+        return {
+            rolledDice: this._rolledDice.slice(),
+            filteredDice: this._filteredDice.slice(),
+            result: this._result
+        }
+    }
 }
 
 enum OperatorType {
@@ -140,6 +157,31 @@ class OperatorTerm implements Term {
                 return this.termElm1.roll() / this.termElm2.roll()
             default:
                 throw 'OperatorTerm::eval : Invalid OperatorType'
+        }
+    }
+    
+    fullResult(): object {
+        let oper: string
+        switch (this.operator) {
+            case OperatorType.ADD:
+                oper = 'add'
+                break
+            case OperatorType.SUB:
+                oper = 'sub'
+                break
+            case OperatorType.MUL:
+                oper = 'mul'
+                break
+            case OperatorType.DIV:
+                oper = 'div'
+                break
+            default:
+                throw 'OperatorTerm::eval : Invalid OperatorType'
+        }
+        return {
+            oper,
+            term1: this.termElm1.fullResult(),
+            term2: this.termElm2.fullResult()
         }
     }
 }

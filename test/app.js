@@ -4,7 +4,8 @@ function main() {
     ['2d6', 'd%', '4d8+2', '3d6+2d8', '4dF'].forEach(input => {
         const query = dice(input)
         const result = query.roll()
-        console.log({ input, result })
+        const fullResult = query.fullResult()
+        console.log({ input, result, fullResult })
     })
 }
 
