@@ -90,7 +90,7 @@ fudge_dice_term -> integer %dice_fudge
         const i: number = data[0] as number
         return new atoms.OperatorTerm(
             atoms.OperatorType.SUB,
-            new atoms.DiceTerm(i, 3, atoms.DiceKeepMode.KEEP_HIGHEST, i),
+            new atoms.DiceTerm(3, i, atoms.DiceKeepMode.KEEP_HIGHEST, i),
             new atoms.IntegerTerm(2 * i)
         )
     } %}

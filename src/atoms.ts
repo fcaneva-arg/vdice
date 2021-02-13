@@ -119,7 +119,23 @@ class DiceTerm implements TermElement {
         if (this._rolledDice.length == 0) {
             this.roll()
         }
+        let query = `${this._quantity}d${this._sides}`
+        if (this._quantity !== this._keepQuantity) {
+            switch(this._keepMode) {
+                case DiceKeepMode.KEEP_HIGHEST:
+                    query += `kH${this._keepQuantity}`
+                    break
+                case DiceKeepMode.KEEP_LOWEST:
+                    query += `kL${this._keepQuantity}`
+                    break
+                case DiceKeepMode.KEEP_MID:
+                    query += `kM${this._keepQuantity}`
+                    break
+
+            }
+        }
         return {
+            query,
             rolledDice: this._rolledDice.slice(),
             filteredDice: this._filteredDice.slice(),
             result: this._result
