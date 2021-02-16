@@ -197,7 +197,8 @@ class OperatorTerm implements Term {
         return {
             oper,
             term1: this.termElm1.fullResult(),
-            term2: this.termElm2.fullResult()
+            term2: this.termElm2.fullResult(),
+            result: this.roll()
         }
     }
 }
