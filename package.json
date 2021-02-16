@@ -1,6 +1,6 @@
 {
-    "name": "virtual-dice",
-    "version": "0.1.0",
+    "name": "vdice",
+    "version": "1.0.0",
     "description": "Small library for rolling dice, specially on role-playing games",
     "main": "app.js",
     "directories": {
