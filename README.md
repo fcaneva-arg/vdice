@@ -13,7 +13,7 @@ The functionality is super simple: you enter a query, the library rolls the dice
 - `2d6`: Roll two six-sided dice
 - `4d8`: Roll four eight-sided dice
 - `d20`: Roll a single twenty-sided dice *(note that we can omit the quantity if it is one dice)*
-- `d%`: Roll a one-hundred-sided dice *(a percentage dice)*
+- `d%`: Roll a one-hundred-sided dice *(a percentage dice)*. `d100` is also valid.
 - `1d20+4`: Roll a single twenty-sided dice, then add 4 to the result
 - `4d6kH3` or `4d6k3`: Roll four six-sided dice, then keep the highest three rolls *(for high rolls, we can omit the `H`)*
 - `2d20kL1`: Roll two twenty-sided dice, then keep the lowest roll *(important: the letter after the `k` is **always** uppercase)*
@@ -21,7 +21,7 @@ The functionality is super simple: you enter a query, the library rolls the dice
 - `(2d10kH1+5)*3`: Mutliply per 3 the best roll of two ten-sided dice with 5 extra points
 - `<Insert your roll here>`
 
-# How do I use it?
+## How do I use it?
 
 Simply `require` or `import` it and you're ready to go:
 
@@ -61,7 +61,9 @@ And it will print something like this:
 }
 ```
 
-**Note:** Whenever you roll Fudge™ dice, you may see that the results of the dice are `1`, `2` and `3` instead of their respective `-` (failure, or `-1`), `0` (neutral, or `0`) and `+` (success, or `+1`), respectively. This _modus operandi_ has a reason: it enhaces parsing, AST-building and execution by simply rolling `n` three-sided dice and then substracting `2*n` to the roll result, which mathematically yields the same result. If you're curious to see this in action, here's an example roll:
+### Special considerations regarding Fudge™ dice
+
+Whenever you roll Fudge™ dice, you may see that the results of the dice are `1`, `2` and `3` instead of their respective `-` (failure, or `-1`), `0` (neutral, or `0`) and `+` (success, or `+1`), respectively. This *modus operandi* has a reason: it enhaces parsing, AST-building and execution by simply rolling `n` three-sided dice and then substracting `2*n` to the roll result, which mathematically yields the same result. If you're curious to see this in action, here's an example roll:
 
 ```javascript
 const fudgeRoll = dice('2d20kH1')
@@ -84,9 +86,9 @@ console.log(fudgeRoll.fullResult())
 
 *As you may see, I rolled three failures and one success. If I take a calculator and input `-1-1-1+1`, it'll return `-2`; same result as the roll up here.*
 
-# How do I build it?
+## How do I build it?
 
-1. Clone this repository (`git clone https://...`)
+1. Clone this repository (`git clone https://github.com/fcaneva-arg/vdice`)
 2. Install all dependencies (`npm i`)
 3. Build the library (`npm run lib`)
 

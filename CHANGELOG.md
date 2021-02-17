@@ -6,4 +6,4 @@
     - Keeping a given best/worst/middle number of dice
     - Adding, substracting, multplying and dividing integers or other dice rolls
     - Parentheses support for altering the order of evaluation
-    - Support for Fudge™ dice (although results are shown in a different way, see README)
+    - Support for Fudge™ dice (although results are shown in a different way, [see README](README.md))
